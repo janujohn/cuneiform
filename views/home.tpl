@@ -1,12 +1,22 @@
 <!--about project details -->
-<h1>CUNEIFORM-Online E-book Reader With Word Learning</h1>
-</br>
-</br>
 
-<div class="row">
-    <div class="span5">
-   </div>
-</div>
+<header id="overview" class="jumbotron subhead">
+	<div class="container">
+		<h1>Cuneiform</h1>
+			<p class="lead">Web based Ebook reader with word learning</p>
+	</div>
+</header>
+
+
+<div class="container">
+	<div class="row">
+		<div class="span6">
+			lksdjfdlsj
+		</div>
+		<div class="span6">
+		<img src="/static/img/cuneiform.jpg" />
+		</div>
+	</div>
 
 <h2><a>ABSTRACT</a></h2>
       <p>epub (ttp://en.wikipedia.org/wiki/EPUB) is a format which is used for 
@@ -25,4 +35,5 @@ it affects the reading flow and pleasure. Addressing this problem is the
 main objective of our project. 
        </p>
 
-%rebase base title="Home page"
+</div>
+%rebase base title="Cuneiform - A web based Epub reader"
