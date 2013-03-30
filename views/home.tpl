@@ -9,31 +9,29 @@
 
 
 <div class="container">
-	<div class="row">
+<br>
+	<div class="row-fluid">
 		<div class="span6">
-			lksdjfdlsj
+			<div class="well">
+				<h1>What is it?</h1>
+				<p>Cuneiform is an ebook reader which supports <a href="http://en.wikipedia.org/wiki/EPUB">epub</a> formatted books. No need to install any software. Cuneiform runs out of your browser and doesn't need any browser plugins. Cuneiform is entirely written in javascript to support most desktop as well as mobile browsers.</p>
+			</div>
+
+			<div class="well">
+				<h1>Why yet another epub reader?</h1>
+				<ul>
+					<li>No need to install software</li>
+					<li>Works on most browsers</li>
+					<li>Supports desktop and mobile platforms</li>
+					<li>Dictionary reference</li>
+					<li>Full page word learning</li>
+					<li>Image and wikipedia reference</li>
+				</ul>
+			</div>
 		</div>
-		<div class="span6">
-		<img src="/static/img/cuneiform.jpg" />
+		<div class="span6 thumbnail">
+			<img src="/static/img/cuneiform.jpg" />
 		</div>
 	</div>
-
-<h2><a>ABSTRACT</a></h2>
-      <p>epub (ttp://en.wikipedia.org/wiki/EPUB) is a format which is used for 
-eBohoks. There are lots of epub reader software are available for both 
-desktops and mobiles. There are lots of features available in those epub 
-readers such as dictionary reference for words in the book, web 
-searching, some readers even provide text to speech. 
-
-While reading ebooks on a computer or on the mobile, people are facing 
-problems understanding some of the words. This is particularly magnified 
-when the person is new to the language. (Imagine that you are reading 
-books in English. You want to refer dictionary every now and then. Right?) 
-
-If the person reading the book had to refer dictionary every two lines, 
-it affects the reading flow and pleasure. Addressing this problem is the 
-main objective of our project. 
-       </p>
-
 </div>
 %rebase base title="Cuneiform - A web based Epub reader"
