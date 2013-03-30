@@ -26,7 +26,7 @@ body {
 
 
 .jumbotron:after {
-	background: url("/static/img/masthead-pattern.png") repeat scroll center center transparent;
+	background: url("/static/img/sumerian-tile.jpg") repeat scroll center center transparent;
 	bottom: 0;
 	content: "";
 	display: block;
@@ -42,7 +42,7 @@ body {
 	text-align: left;
 }
 .jumbotron {
-	background: linear-gradient(45deg, #020031 0%, #6D3353 100%) repeat scroll 0 0 transparent;
+	background: linear-gradient(45deg, #633704 0%, #E37B05 100%) repeat scroll 0 0 transparent;
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
 	color: #FFFFFF;
 	padding: 40px 0;
