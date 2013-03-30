@@ -10,11 +10,6 @@ from bottle import route, default_app, static_file, template, debug
 # Disable this once stable
 debug(True)
 
-@route('/hello')
-def hello():
-	return cwd
-	return template('hello', name='poomalairaj')
-
 @route('/')
 def helloworld():
 	return "Hello World! I am from document root"
