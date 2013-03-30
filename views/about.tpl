@@ -1,32 +1,37 @@
 <!-- About Project members -->
-<br>
-<div class="hero-unit">
-	<h3>ABOUT PROJECT MEMBERS</h3>
-	<p>Team members from PSNA College of Engg & Tech, Dindigul</p>
+<br />
+<br />
+<br />
+<div class="container">
+	<div class="hero-unit">
+		<h2>About Us</h2>
+		<p>People behind Cuneiform</p>
+	</div>
+
+	<!-- Example row of columns -->
+	<div class="row">
+		<div class="span4">
+			<h2>Guide</h2>
+			<h4>Mrs.R.Karuppathal, M.Tech.,</h4>
+			<p>Associate professor, <a href="http://www.psnacet.edu.in/">PSNA CET</a><br/> Dept of Information Technology</p>
+		</div>
+
+		<div class="span4">
+			<h2>Team Member</h2>
+			<h4>Tamil Selvi</h4>
+			<p>Reg No: 91009134530<br/>
+			Dept: IT-Final Year<br/>
+			n.tamiltillu.tamil [AT] gmail [DOT] com
+		</div>
+
+		<div class="span4">
+			<h2>Team Member</h2>
+			<h4>Johnsi Raani</h4>
+			Reg No: 91009134508<br/>
+			Dept: IT-Final Year<br/>
+			hi [AT] johnsiraani [DOT] com
+		</div>
+	</div>
 </div>
 
-<!-- Example row of columns -->
-<div class="row">
-	<div class="span4">
-		<h3>GUIDE</h3>
-		<p>Mrs.R.Karuppathal, M.Tech </p></br>
-		Associate professor from PSNA CET, Dept of Information Technology.          
-	</div>
-
-	<div class="span4">
-		<h3>Team Member</h3>
-		<p>Ms.N.Tamil Selvi</p></br>
-		REG NO:91009134530</br>
-		DEPT:IT-Final Year
-		E-Mail:n.tamiltillu.tamil@gmail.com
-	</div>
-
-	<div class="span4">
-			<h3>Team Member</h3>
-			<p>Ms.M.Johnsi Raani</p></br>
-		REG NO:91009134508</br>
-		DEPT:IT-Final Year
-		E-Mail:johnsirani.m@gmail.com
-	</div>
-</div>
 %rebase base title="About Project Members"
