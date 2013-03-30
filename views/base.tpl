@@ -45,24 +45,16 @@
 			</div>
 		</div>
 
-		<div class="container">
 		%include
-		</div>
 
 		<!-- footer -->
-		<div class="footer" style="padding-top:15px;margin-top:20px;background-color:#ddd">
+		<footer class="footer" >
 			<div class="container">
-				<div class="row">
-					<div class="span5"></div>  
-						<p class="muted credit">Guided By <a>Mrs R.Karuppathal</a></br>
-							<div class="row">
-								<div class="span5"></div>
-								<p class="muted credit">Submitted By <a>N.TamilSelvi and M.JohnsiRaani</a></p>
-							</div>
-						</p>
-					</div>
-				</div>
+				<p class="muted credit">Powered by <a href="http://www.python.org/">python</a>, <a href="http://bottlepy.org">bottle</a>, <a href="http://twitter.github.com/bootstrap/">bootstrap</a>, <a href="http://www.sqlite.org/">sqlite</a>, <a href="https://github.com/joseph/monocle">monocle</a></p>
+				<p class="muted credit">Designed and developed By TamilSelvi and JohnsiRaani</p>
+				<p class="muted credit">Guided By Mrs R.Karuppathal</p>
+				<p class="muted credit">&copy; Copyright 2013</p>
 			</div>
-		</div>
+		</footer>
 	</body>
 </html>
