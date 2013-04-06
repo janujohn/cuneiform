@@ -35,16 +35,17 @@ def signup_form():
 
 @route('/process_signup', method='POST')
 def signup():
+	name = request.POST.get('name', '')
 	email = request.POST.get('email', '')
 	password = request.POST.get('password', '')
 	password_confirm = request.POST.get('password_confirm', '')
 	con = sqlite3.connect('cuneiform.sqlite3')
 	cursor = con.cursor()
-	cursor.execute('insert into users(email, password, date_joined) values(?, ?, strftime("%s", "now"))', (email, password))
+	cursor.execute('insert into users(name, email, password, date_joined) values(?, ?, ?, strftime("%s", "now"))', (name, email, password))
 	userid = cursor.lastrowid
 	con.commit()
 	cursor.close()
-	redirect('/signup_thanks')
+	redirect('/thanks')
 
 @route('/login')
 def login():
@@ -53,6 +54,10 @@ def login():
 @route('/about')
 def about():
 	return template('about')
+
+@route('/thanks')
+def thanks():
+	return template('signup_thanks')
 
 @route('/static/<filename:path>')
 def send_static(filename):
