@@ -9,4 +9,4 @@
       </form>
      </div> <!-- /container -->
 <div style="margin-bottom:60px"></div>
-%rebase base title="Please login"
+%rebase base title="Please login", active_login='active'

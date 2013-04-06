@@ -34,4 +34,4 @@
 	</div>
 </div>
 
-%rebase base title="About Project Members"
+%rebase base title="About Project Members", active_about='active'

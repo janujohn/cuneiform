@@ -36,9 +36,10 @@
 					<a class="brand" href="/">Cuneiform</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li><a href="home">Home</a></li>
-							<li><a href="about">About</a></li>
-							<li><a href="login">Login</a></li>
+							<li class="{{get('active_home', '')}}"><a href="home">Home</a></li>
+							<li class="{{get('active_about', '')}}"><a href="about">About</a></li>
+							<li class="{{get('active_demo', '')}}"><a href="demo">Demo</a></li>
+							<li class="{{get('active_login', '')}}"><a href="login">Login</a></li>
 						</ul>
 					</div>
 				</div>
