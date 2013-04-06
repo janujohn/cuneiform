@@ -39,6 +39,7 @@
 							<li class="{{get('active_home', '')}}"><a href="home">Home</a></li>
 							<li class="{{get('active_about', '')}}"><a href="about">About</a></li>
 							<li class="{{get('active_demo', '')}}"><a href="demo">Demo</a></li>
+							<li class="{{get('active_signup', '')}}"><a href="signup">Sign Up</a></li>
 							<li class="{{get('active_login', '')}}"><a href="login">Login</a></li>
 						</ul>
 					</div>
