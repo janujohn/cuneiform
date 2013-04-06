@@ -1,6 +1,6 @@
 <br><br><br>
 <div class="container">
-<form class="form-horizontal" action='' method="POST">
+<form class="form-horizontal" action='/process_signup' method="POST">
   <fieldset>
     <div id="legend">
       <legend class="">Sign Up</legend>
