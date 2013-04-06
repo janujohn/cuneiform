@@ -36,3 +36,4 @@ nosetests.xml
 
 #webfaction specific
 apache2
+session
