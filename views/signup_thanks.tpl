@@ -16,4 +16,4 @@
 	<br />
 	<br />
 </div>
-%rebase base title="Thanks for signing up!"
+%rebase base title="Thanks for signing up!", session=session

@@ -34,4 +34,4 @@
 		</div>
 	</div>
 </div>
-%rebase base title="Cuneiform - A web based Epub reader", active_home="active"
+%rebase base title="Cuneiform - A web based Epub reader", active_home="active", session=session

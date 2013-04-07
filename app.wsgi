@@ -27,37 +27,72 @@ def setup_request():
 @route('/home')
 @route('/')
 def home():
-	return template('home')
+	return template('home', session=request.session)
 
-@route('/signup')
-def signup_form():
-	return template('signup')
-
-@route('/process_signup', method='POST')
+@route('/signup', method=['GET','POST'])
 def signup():
-	name = request.POST.get('name', '')
-	email = request.POST.get('email', '')
-	password = request.POST.get('password', '')
-	password_confirm = request.POST.get('password_confirm', '')
-	con = sqlite3.connect('cuneiform.sqlite3')
-	cursor = con.cursor()
-	cursor.execute('insert into users(name, email, password, date_joined) values(?, ?, ?, strftime("%s", "now"))', (name, email, password))
-	userid = cursor.lastrowid
-	con.commit()
-	cursor.close()
-	redirect('/thanks')
+	if request.method=='POST':
+		name = request.POST.get('name', '').strip()
+		email = request.POST.get('email', '').strip()
+		password = request.POST.get('password', '').strip()
+		password_confirm = request.POST.get('password_confirm', '').strip()
+		con = sqlite3.connect('cuneiform.sqlite3')
+		cursor = con.cursor()
+		cursor.execute('insert into users(name, email, password, date_joined) values(?, ?, ?, strftime("%s", "now"))', (name, email, password))
+		userid = cursor.lastrowid
+		con.commit()
+		cursor.close()
+		redirect('/thanks')
+	return template('signup', session=request.session)
 
-@route('/login')
+@route('/login', method=['GET', 'POST'])
 def login():
-	return template('login')
+	if request.method=="POST":
+		email = request.POST.get('email', '').strip()
+		password = request.POST.get('password', '').strip()
+		con = sqlite3.connect('cuneiform.sqlite3')
+		c = con.cursor()
+		c.execute('select * from users where email=? and password=?', (email, password))
+		result = c.fetchone()
+		if not result:
+			return template('login', error='User name or password is wrong. Please try again', session=request.session)
+		else:
+			signin_user(result)
+			redirect('/mybooks')
+	return template('login', session=request.session)
+
+@route('/logout')
+def logout():
+	request.session.delete()
+	redirect('/home')
+
+def signin_user(user_data):
+	request.session['userid'] = user_data[0]
+	request.session['username'] = user_data[1]
+	request.session['email'] = user_data[2]
+	request.session['joined_date'] = user_data[4]
+
+@route('/mybooks')
+def mybooks():
+	if 'userid' in request.session:
+		return template('mybooks', session=request.session, active_mybooks='active')
+	else:
+		redirect('/login')
+
+@route('/upload', method=['GET', 'POST'])
+def upload():
+	if 'userid' not in request.session:
+		redirect('/login')
+
+	return template('upload', session=request.session, active_upload='active')
 
 @route('/about')
 def about():
-	return template('about')
+	return template('about', session=request.session)
 
 @route('/thanks')
 def thanks():
-	return template('signup_thanks')
+	return template('signup_thanks', session=request.session)
 
 @route('/static/<filename:path>')
 def send_static(filename):

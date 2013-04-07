@@ -34,15 +34,26 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="brand" href="/">Cuneiform</a>
+
 					<div class="nav-collapse collapse">
 						<ul class="nav">
 							<li class="{{get('active_home', '')}}"><a href="home">Home</a></li>
 							<li class="{{get('active_about', '')}}"><a href="about">About</a></li>
 							<li class="{{get('active_demo', '')}}"><a href="demo">Demo</a></li>
+						</ul>
+
+						<ul class="nav secondary-nav pull-right">
+							%if 'userid' not in session:
 							<li class="{{get('active_signup', '')}}"><a href="signup">Sign Up</a></li>
-							<li class="{{get('active_login', '')}}"><a href="login">Login</a></li>
+							<li class="{{get('active_login', '')}}"><a href="login"><i class="icon-lock icon-white"></i>&nbsp;&nbsp;Login</a></li>
+							%end
+
+							%if 'userid' in session:
+							<li style="color:#fff;padding:10px 15px;"><span>{{session['username']}}</span><span>&nbsp;&nbsp; [ <a href="/logout">logout</a> ]</span></li>
+							%end
 						</ul>
 					</div>
+
 				</div>
 			</div>
 		</div>

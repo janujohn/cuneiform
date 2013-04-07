@@ -1,7 +1,7 @@
-<script src="/static/js/validate.js"></script>
+<script type="text/javascript" src="/static/js/validate.js"></script>
 <br><br><br>
 <div class="container">
-<form id="signup" class="form-horizontal" action='/process_signup' method="POST">
+<form id="signup" class="form-horizontal" action='/signup' method="POST">
   <fieldset>
     <div id="legend">
       <legend class="">Sign Up</legend>
@@ -42,7 +42,7 @@
     <div class="control-group">
       <!-- Button -->
       <div class="controls">
-        <button class="btn btn-success">Sign UP Now!</button>
+        <button class="btn btn-primary">Sign UP Now!</button>
       </div>
     </div>
   </fieldset>
@@ -55,4 +55,4 @@
 		}); 
 	});
 </script>
-%rebase base title="Signup Now", active_signup='active'
+%rebase base title="Signup Now", active_signup='active', session=session
