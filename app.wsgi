@@ -8,7 +8,7 @@ os.chdir(cwd)
 from bottle import route, default_app, static_file, template, debug, request, hook, redirect, error
 import beaker.middleware
 import sqlite3
-
+import hashlib, time, epub
 
 session_opts = {
 	'session.type': 'file',
@@ -78,17 +78,53 @@ def demo():
 
 @route('/mybooks')
 def mybooks():
-	if 'userid' in request.session:
-		return template('mybooks', session=request.session, active_mybooks='active')
-	else:
+	if 'userid' not in request.session:
 		redirect('/login')
+
+	con = sqlite3.connect('cuneiform.sqlite3')
+	c = con.cursor()
+	c.execute('select * from books where userid=? and is_active=1 ', (request.session['userid'],))
+	books = c.fetchall()
+	return template('mybooks', session=request.session, active_mybooks='active', books=books)
 
 @route('/upload', method=['GET', 'POST'])
 def upload():
 	if 'userid' not in request.session:
 		redirect('/login')
+	error = ''
+	if request.method=='POST':
+		#do something
+		upload =  request.files.get('book')
+		name, ext = os.path.splitext(upload.filename)
+		if ext.lower()=='.epub':
+			# write it to books dir
+			save_path = get_book_save_path(request.session['userid'], upload.filename)
+			book_path = '/'.join(save_path)
+			with open(book_path, 'w') as save_file:
+				save_file.write(upload.file.read())
 
-	return template('upload', session=request.session, active_upload='active')
+			book = epub.open_epub(book_path)
+			title = str(book.opf.metadata.titles[0][0])
+			author = str(book.opf.metadata.creators[0][0])
+
+			con = sqlite3.connect('cuneiform.sqlite3')
+			cursor = con.cursor()
+			cursor.execute('insert into books(userid, filename, title, author, is_cover, is_active, date) values(?, ?, ?, ?, ?, ?, strftime("%s", "now"))', (request.session['userid'], save_path[1], title, author, 0, 1))
+			bookid = cursor.lastrowid
+			con.commit()
+			cursor.close()
+			redirect('/mybooks')
+
+		else:
+			error = "Error! Please upload only EPub format file"
+	return template('upload', session=request.session, active_upload='active', error=error)
+
+def get_book_save_path(userid, filename):
+	upload_dir = settings.app_dir + '/static/books/' + str(userid)
+	if not os.path.exists(upload_dir):
+		os.makedirs(upload_dir)
+	filename = hashlib.sha1(str(userid) + filename + str(time.time())).hexdigest()
+	return [upload_dir, filename]
 
 @route('/about')
 def about():
@@ -100,7 +136,12 @@ def thanks():
 
 @route('/demoreader')
 def demoreader():
-	return template('reader', session=request.session, epub=request.GET.get('epub', '').strip())
+	epub = request.GET.get('epub', '').strip()
+	con = sqlite3.connect('cuneiform.sqlite3')
+	c = con.cursor()
+	c.execute('select title from books where filename=?', (epub.split('/')[1],))
+	title = c.fetchone()[0]
+	return template('reader', session=request.session, epub=epub, title=title)
 
 @route('/static/<filename:path>')
 def send_static(filename):

@@ -17,4 +17,4 @@
 <input type="hidden" id="epub_location" value="/static/books/{{epub}}" />
 	
 <script type="text/javascript" src="/static/js/reader.js"></script>
-%rebase base title="", session=session
+%rebase base title=title, session=session
