@@ -210,3 +210,15 @@ div.monelem_controls_scrubber_needle {
 div.monelem_controls_scrubber_trail {
   background: #E0D3C0;
 }
+#loader {
+	height: 400px;
+	position: relative;
+}
+.ajax-loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -32px; /* -1 * image width / 2 */
+	margin-top: -32px;  /* -1 * image height / 2 */
+	display: block;     
+}

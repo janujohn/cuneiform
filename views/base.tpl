@@ -49,6 +49,7 @@
 							%end
 
 							%if 'userid' in session:
+							<li class="{{get('active_mybooks', '')}}"><a href="/mybooks">My Books</a></li>
 							<li style="color:#fff;padding:10px 15px;"><span>{{session['username']}}</span><span>&nbsp;&nbsp; [ <a href="/logout">logout</a> ]</span></li>
 							%end
 						</ul>

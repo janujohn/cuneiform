@@ -23,8 +23,6 @@ function initFn() {
 	client.send(null);
 	return;
 
-
-
 	function cb_book(book) {
 		var fnmeta = function(key) {
 			return {
@@ -88,6 +86,9 @@ function initFn() {
 			var spinner = Monocle.Controls.Spinner(reader);
 			reader.addControl(spinner, 'page', { hidden: true });
 			spinner.listenForUsualDelays('reader');
+
+			// Hide loader after book loaded
+			Monocle.Events.listen('reader', 'monocle:loaded', function(){$('#loader').css('display', 'none')})
 
 			// Because the 'reader' element changes size on window resize. we should notify it of this event.
 			Monocle.Events.listen(

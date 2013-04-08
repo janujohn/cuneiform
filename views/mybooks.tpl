@@ -10,4 +10,4 @@
 		</div>
 	</div>
 </div>
-%rebase base title="My Books", session=session
+%rebase base title="My Books", session=session, active_mybooks='active'

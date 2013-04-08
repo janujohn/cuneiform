@@ -12,6 +12,7 @@
 <br>
 <br>
 
+<div id="loader"><img class="ajax-loader" src="/static/img/loader.gif"></div>
 <div id="reader"></div>
 <input type="hidden" id="epub_location" value="/static/books/{{epub}}" />
 	
