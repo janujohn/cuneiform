@@ -72,6 +72,10 @@ def signin_user(user_data):
 	request.session['email'] = user_data[2]
 	request.session['joined_date'] = user_data[4]
 
+@route('/demo')
+def demo():
+	return template('demo', session=request.session)
+
 @route('/mybooks')
 def mybooks():
 	if 'userid' in request.session:
@@ -94,13 +98,17 @@ def about():
 def thanks():
 	return template('signup_thanks', session=request.session)
 
+@route('/demoreader')
+def demoreader():
+	return template('reader', session=request.session, epub=request.GET.get('epub', '').strip())
+
 @route('/static/<filename:path>')
 def send_static(filename):
 	return static_file(filename, root= cwd + '/static')
 
 @error(404)
 def error404(error):
-	return template('404')
+	return template('404', session={})
 
 #application = default_app()
 application = beaker.middleware.SessionMiddleware(default_app(), session_opts)

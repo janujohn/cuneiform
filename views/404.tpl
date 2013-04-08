@@ -16,4 +16,4 @@
 	<br />
 	<br />
 </div>
-%rebase base title="Page not found"
+%rebase base title="Page not found", session=session
