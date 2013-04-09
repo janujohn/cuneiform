@@ -1,0 +1,9 @@
+var t = '';
+function gText(e) {
+    t = (document.all) ? $('iframe')[1].contentDocument.selection.createRange().text : $('iframe')[1].contentDocument.getSelection();
+    if(t!='')
+    console.log(t.toString())
+}
+
+$('iframe')[1].contentDocument.onmouseup = gText;
+if (!document.all) $('iframe')[1].contentDocument.captureEvents(Event.MOUSEUP);
