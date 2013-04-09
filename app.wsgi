@@ -137,6 +137,12 @@ def thanks():
 @route('/demoreader')
 def demoreader():
 	epub = request.GET.get('epub', '').strip()
+	title = epub.split('/')[1].replace('-', ' ').replace('.epub', '').title()
+	return template('reader', session=request.session, epub=epub, title=title)
+
+@route('/reader')
+def reader():
+	epub = request.GET.get('epub', '').strip()
 	con = sqlite3.connect('cuneiform.sqlite3')
 	c = con.cursor()
 	c.execute('select title from books where filename=?', (epub.split('/')[1],))

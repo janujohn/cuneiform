@@ -17,7 +17,7 @@
 				</thead>
 				<tbody>
 					%for book in books:
-						<tr><td><a href="demoreader?epub={{book[1]}}/{{book[2]}}">{{book[3]}}</a></td><td>{{book[4]}}</td></tr>
+						<tr><td><a href="reader?epub={{book[1]}}/{{book[2]}}">{{book[3]}}</a></td><td>{{book[4]}}</td></tr>
 					%end
 				</tbody>
 			</table>

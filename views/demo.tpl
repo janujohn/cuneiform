@@ -16,13 +16,13 @@
               </li>
               <li class="span3">
 				<div class="center"><h4>Analyze People on sight</h4></div>
-                <a class="thumbnail" href="/demoreader?epub=demo/how-to-analyze-people.epub">
+                <a class="thumbnail" href="/demoreader?epub=demo/how-to-analyze-people-on-sight.epub">
                   <img alt="Analyze People" style="height: 300px;" src="/static/img/demo/demo-analyze-people.jpg" />
                 </a>
               </li>
               <li class="span3">
 				<div class="center"><h4>The new helping hand</h4></div>
-                <a class="thumbnail" href="/demoreader?epub=demo/helpinghand.epub">
+                <a class="thumbnail" href="/demoreader?epub=demo/the-new-helping-hand.epub">
                   <img alt="The New helping hand" style="height: 300px;" src="/static/img/demo/demo-helpinghand.jpg" />
                 </a>
               </li>
