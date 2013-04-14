@@ -38,3 +38,4 @@ nosetests.xml
 apache2
 session
 static/books
+*.sqlite3
