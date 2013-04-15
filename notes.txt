@@ -7,3 +7,21 @@ function gText(e) {
 
 $('iframe')[1].contentDocument.onmouseup = gText;
 if (!document.all) $('iframe')[1].contentDocument.captureEvents(Event.MOUSEUP);
+
+
+PYTHONPATH="/home/poomalairaj/webapps/cuneiform/lib/python2.7"
+
+
+
+from nltk.corpus import wordnet
+synsets = wordnet.synsets('cake')
+
+
+
+for syn in synsets:
+	print '-' * 10
+	print "%s : [%s]" % (syn.name, syn.lexname)
+	print "Definition %s" % (syn.definition)
+	for example in syn.examples:
+		print "Example: ", example
+

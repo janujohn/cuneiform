@@ -9,6 +9,8 @@ from bottle import route, default_app, static_file, template, debug, request, ho
 import beaker.middleware
 import sqlite3
 import hashlib, time, epub
+import extractwords
+from define import get_meaning
 
 session_opts = {
 	'session.type': 'file',
@@ -60,6 +62,22 @@ def login():
 			signin_user(result)
 			redirect('/mybooks')
 	return template('login', session=request.session)
+
+@route('/ajax/learn', method='POST')
+def learn(): 
+	if request.method=='POST':
+		text = request.POST.get('text', '').strip()
+		extracted_words = extractwords.extract(text)
+		return {'error': 'false', 'words': extracted_words}
+
+@route('/ajax/get_meaning')
+def web_definition(): 
+	word = request.GET.get('word', '').strip()
+	if word:
+		return {'web_definition': get_meaning(word), 'error': 'false'}
+	else:
+		return {'error':'true'}
+
 
 @route('/logout')
 def logout():

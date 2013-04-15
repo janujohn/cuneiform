@@ -66,6 +66,7 @@ function initFn() {
 		getMetaData: fnmeta
 	}
 
+
 	var readerOptions = {};
 
 	/* PLACE SAVER */
@@ -87,8 +88,13 @@ function initFn() {
 			reader.addControl(spinner, 'page', { hidden: true });
 			spinner.listenForUsualDelays('reader');
 
-			// Hide loader after book loaded
-			Monocle.Events.listen('reader', 'monocle:loaded', function(){$('#loader').css('display', 'none')})
+					// Hide loader after book loaded
+			Monocle.Events.listen('reader', 'monocle:loaded', function(){
+				$('#loader').css('display', 'none')
+				$('iframe').each(function(i,e){
+					e.contentDocument.onmouseup = getSelectionText;
+				})
+			});
 
 			// Because the 'reader' element changes size on window resize. we should notify it of this event.
 			Monocle.Events.listen(
@@ -155,10 +161,21 @@ function initFn() {
 			reader.addControl(chapterTitle, 'page');
 			reader.listen(
 				'monocle:pagechange',
-				function (evt) { chapterTitle.update(evt.m.page); }
+				function (evt) {
+//					$('iframe')[1].contentDocument.onmouseup = getSelectionText; 
+//					if (!document.all) $('iframe')[1].contentDocument.captureEvents(Event.MOUSEUP);
+
+
+					chapterTitle.update(evt.m.page); }
 			);
-
-
+/*
+reader.listen(
+'monocle:turn',
+function(evt) {
+	$('iframe')[1].contentDocument.onmouseup = getSelectionText; 
+	if (!document.all) $('iframe')[1].contentDocument.captureEvents(Event.MOUSEUP);
+});
+*/
 			// PAGE NUMBER RUNNING HEAD 
 			var pageNumber = {
 				runners: [],
@@ -205,5 +222,90 @@ function initFn() {
 				);
 			}
 		});
+	}
+}
+var t = '';
+function getSelectionText(e) {
+	t = (document.all) ? $('iframe')[1].contentDocument.selection.createRange().text : $('iframe')[1].contentDocument.getSelection();
+	if(t=='') {
+		
+	t = (document.all) ? $('iframe')[0].contentDocument.selection.createRange().text : $('iframe')[0].contentDocument.getSelection();
+		}
+	if(t!='') {
+		$('#learn').css('display', 'block')
+		$('#hidLearn').val(t);
+	}
+	else {
+		$('#learn').css('display', 'none')
+		$('#hidLearn').val('');
+	}
+}
+
+function getMeaning(element) {
+	word = $(element).attr('data-word')
+	if($(element).attr('data-meaning') == '') {
+		$.getJSON('/ajax/get_meaning?word='+word, function(data){
+			$(element).attr('data-meaning', data['web_definition']['webDefinitions'][0])
+
+			$(element).popover({
+				'title' : 'Definition for "<b>'+word+'</b>":',
+				'content': data['web_definition']['webDefinitions'][0],
+				'html': true,
+				'placement': 'bottom'
+				});
+			$(element).popover('show');
+
+		});
+	}
+}
+
+$(document).ready(function(){
+	$('#learnButton').click(function(){
+
+		data = {'text': $('#hidLearn').val()};
+		var url = '/ajax/learn';
+		$.ajax({
+			dataType: "json",
+			url: url,
+			data: data,
+			type: 'POST',
+			success: function(data){
+				var table = '<table class="table table-striped table-bordered table-condensed">';
+				if(data['error'] == 'false') {
+					for(var i=0;i<data['words'].length;i++) {
+						table += '<tr>'
+						table += '<td><a href="#">'+data['words'][i]+'</a></td>'
+						table += '<td><a onclick="getMeaning(this)" data-meaning="" class="btn" data-word="'+data['words'][i]+'" >Meaning</a></td>'
+						table += '<td><a onclick="getImage(\''+data['words'][i]+'\')"><img src="/static/img/googleIcon.gif"></a></td>'
+						
+						table += '</tr>'
+					}
+					table += '</table>'
+					$('#wordnet').html(table)
+					$('#learnModal').modal();
+				}
+			}
+		});
+	});
+});
+
+function getImage(word) {
+	url = 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&callback=processImage&q=' + word;
+	$.ajax({
+		url: url,
+		dataType: 'jsonp',
+		jsonpCallback: processImage
+	});
+}
+
+function processImage(data) {
+	if(data) {
+		var list = '<ul class="thumbnails">';
+		for(var i=0;i<data['responseData']['results'].length;i++) {
+			list += '<li class="span3"><div class="thumbnail"><img height="260" src="'+data['responseData']['results'][i]['url']+'" /></div></li>';
+		}
+		list += '</ul>';
+		$('#googleImage').html(list);
+		$('#ImageModal').modal();
 	}
 }

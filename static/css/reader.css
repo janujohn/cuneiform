@@ -222,3 +222,13 @@ div.monelem_controls_scrubber_trail {
 	margin-top: -32px;  /* -1 * image height / 2 */
 	display: block;     
 }
+.learn {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -32px; /* -1 * image width / 2 */
+	margin-top: -32px;  /* -1 * image height / 2 */
+	display: block;     
+	font-size: 21px;
+	font-weight: bold;
+}
