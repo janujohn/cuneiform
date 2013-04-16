@@ -25,12 +25,18 @@
 					<li>Supports desktop and mobile platforms</li>
 					<li>Dictionary reference</li>
 					<li>Full page word learning</li>
-					<li>Image and wikipedia reference</li>
+					<li>Google Image reference</li>
 				</ul>
 			</div>
 		</div>
 		<div class="span6 thumbnail">
 			<img src="/static/img/cuneiform.jpg" />
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span10">
+		<h1 style="color:#0088CC;">Cool... Ain't it? Seeing is believing. Wanna demo?</h1>
+		<a href="/demo" class="btn btn-success">Yes! Show me demo</a>
 		</div>
 	</div>
 </div>
